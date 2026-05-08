@@ -1,4 +1,9 @@
 package co.edu.uniquindio.poo.programacion1.model;
 
 public enum TipoAtraccion {
+
+    ACUATICA,
+    MECANICA,
+    INFANTIL,
+    EXTREMA
 }

@@ -1,8 +1,9 @@
 package co.edu.uniquindio.poo.programacion1.model;
 
-public enum EstadoAtraccion {
+public enum TipoNotificacion {
 
-    ACTIVA,
+    ALERTA,
+    PROMOCION,
     MANTENIMIENTO,
-    CERRADA
+    INFORMACION
 }
