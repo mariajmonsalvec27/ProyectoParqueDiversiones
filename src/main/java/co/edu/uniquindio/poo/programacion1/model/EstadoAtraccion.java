@@ -4,5 +4,6 @@ public enum EstadoAtraccion {
 
     ACTIVA,
     MANTENIMIENTO,
-    CERRADA
+    CERRADA,
+    EN_REPARACION
 }
