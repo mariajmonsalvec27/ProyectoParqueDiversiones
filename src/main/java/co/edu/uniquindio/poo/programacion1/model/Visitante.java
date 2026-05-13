@@ -14,6 +14,9 @@ public class Visitante extends Persona{
         this.estatura = estatura;
         this.saldoVirtual = saldoVirtual;
 
+        this.accesoFastPass = accesoFastPass;
+
+
     }
 
     public double getEstatura() {
@@ -47,4 +50,41 @@ public class Visitante extends Persona{
     public void setAccesoFastPass(boolean accesoFastPass) {
         this.accesoFastPass = accesoFastPass;
     }
+
+    public void recargarSaldo(double saldoRecarga){
+
+        if(saldoRecarga > 0){
+            saldoVirtual += saldoRecarga;
+        }
+    }
+
+    public boolean descontarSaldo(double valor){
+
+        if(saldoVirtual >= valor){
+            saldoVirtual -= valor;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean tieneTicket(){
+
+        return ticket != null;
+    }
+
+    public boolean puedeUsarFastPass(){
+        return accesoFastPass;
+    }
+
+    @Override
+    public String toString() {
+        return "Visitante{" +
+                "nombre='" + getNombre() + '\'' +
+                "documento='" + getDocumento() + '\'' +
+                "saldo=" + saldoVirtual +
+                '}';
+    }
+
+
+
 }

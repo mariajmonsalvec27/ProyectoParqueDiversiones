@@ -33,6 +33,25 @@ public class Administrador extends Empleado implements INotificable {
     @Override
     public void enviarNotificacion(String mensaje) {
 
+        System.out.println("Notificacion enviada: " + mensaje);
     }
 
+    @Override
+    public String toString(){
+
+        return "Administrador{" +
+                "Nombre= " + getNombre() + '\'' +
+                "usuario= " + usuario + '\'' +
+                "id = " + getIdEmpleado() + '}';
+
+    }
+
+    public boolean iniciarSesion(String usuario, String contrasenia) {
+        return this.usuario.equals(usuario)
+                && this.contrasenia.equals(contrasenia);
+    }
+
+
 }
+
+

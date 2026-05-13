@@ -12,7 +12,7 @@ public abstract class Ticket implements IValidable {
     protected boolean activo;
     protected LocalDate fechaCompra;
 
-    public Ticket(int idTicket, double precio, boolean activo, LocalDate fechaCompra) {
+    public Ticket(int idTicket, double precio, boolean activo){
 
         this.idTicket = idTicket;
         this.precio = precio;
@@ -54,7 +54,29 @@ public abstract class Ticket implements IValidable {
     }
 
     @Override
-    public boolean validarAcceso(Visitante visitante){
-        return  true;
+    public abstract boolean validarAcceso(Visitante visitante);
+
+
+    public void desactivarTicket(){
+        activo = false;
     }
+
+    public void activarTicket(){
+        activo = true;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "idTicket=" + idTicket +
+                "precio=" + precio +
+                "activo=" + activo +
+                '}';
+    }
+
+    public boolean verificarVigencia(){
+        return activo;
+    }
+
+
 }

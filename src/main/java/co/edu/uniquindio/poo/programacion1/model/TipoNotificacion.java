@@ -5,5 +5,6 @@ public enum TipoNotificacion {
     ALERTA,
     PROMOCION,
     MANTENIMIENTO,
-    INFORMACION
+    INFORMACION,
+    URGENTE
 }

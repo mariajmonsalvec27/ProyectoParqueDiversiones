@@ -33,6 +33,19 @@ public class Persona{
     }
 
     public void setEdad(int edad) {
-        this.edad = edad;
+
+        if(edad >= 0){
+            this.edad = edad;
+        }
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                "documento='" + documento + '\'' +
+                "edad=" + edad +
+                '}';
+    }
+
 }

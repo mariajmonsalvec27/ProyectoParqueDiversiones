@@ -22,6 +22,7 @@ public class ColaVirtual implements IGestionable {
         this.capacidadMaxima = capacidadMaxima;
         this.tiempoEstimadoEspera = tiempoEstimadoEspera;
         this.activa = activa;
+        this.visitantesEsperando = new ArrayList<>();
 
     }
 
@@ -75,17 +76,57 @@ public class ColaVirtual implements IGestionable {
 
     @Override
     public void abrir(){
-
+        activa = true;
     }
 
     @Override
     public void cerrar(){
-
+        activa = false;
     }
 
     @Override
     public void cambiarEstado(String estado){
 
+        if(estado.equalsIgnoreCase("ACTIVA")){
+            activa = true;
+        }
+
+        else if(estado.equalsIgnoreCase("CERRADA")){
+            activa = false;
+        }
+    }
+
+    public boolean agregarVisitante(Visitante visitante){
+
+        if(activa && visitantesEsperando.size() < capacidadMaxima){
+
+            visitantesEsperando.add(visitante);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean removerVisitante(Visitante visitante){
+
+        return visitantesEsperando.remove(visitante);
+    }
+
+    public int obtenerCantidadVisitantes(){
+        return visitantesEsperando.size();
+    }
+
+    public boolean colaLlena(){
+        return visitantesEsperando.size() >= capacidadMaxima;
+    }
+
+    @Override
+    public String toString() {
+        return "ColaVirtual{" +
+                "idColaEspera=" + idColaEspera +
+                ", activa=" + activa +
+                ", visitantesEnEspera=" + visitantesEsperando.size() +
+                '}';
     }
 
 }

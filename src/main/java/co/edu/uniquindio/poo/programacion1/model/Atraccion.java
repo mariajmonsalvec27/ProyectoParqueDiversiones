@@ -9,7 +9,7 @@ public class Atraccion implements IGestionable, IValidable{
     private int id;
     private String nombre;
     private int capacidadMaxima;
-    private double alturaMaxima;
+    private double estaturaMinima;
     private int edadMinima;
 
     //cantidad de personas dentro de la atraccion y la cantidad de personas que la han montado
@@ -24,13 +24,13 @@ public class Atraccion implements IGestionable, IValidable{
     private TipoAtraccion tipoAtraccion;
     private OperadorAtraccion operadorAtraccion;
 
-    public Atraccion(int id, String nombre, int capacidadMaxima, double alturaMaxima, int edadMinima,
+    public Atraccion(int id, String nombre, int capacidadMaxima, double estaturaMinima, int edadMinima,
                      int visitantesDentroAtraccion, int visitantesTotalesDeAtraccion, int tiempoEspera) {
 
         this.id = id;
         this.nombre = nombre;
         this.capacidadMaxima = capacidadMaxima;
-        this.alturaMaxima = alturaMaxima;
+        this.estaturaMinima = estaturaMinima;
         this.edadMinima = edadMinima;
         this.visitantesDentroAtraccion = visitantesDentroAtraccion;
         this.visitantesTotalesDeAtraccion = visitantesTotalesDeAtraccion;
@@ -61,12 +61,12 @@ public class Atraccion implements IGestionable, IValidable{
         this.capacidadMaxima = capacidadMaxima;
     }
 
-    public double getAlturaMaxima() {
-        return alturaMaxima;
+    public double getEstaturaMinima() {
+        return estaturaMinima;
     }
 
-    public void setAlturaMaxima(double alturaMaxima) {
-        this.alturaMaxima = alturaMaxima;
+    public void setEstaturaMinima(double estaturaMinima) {
+        this.estaturaMinima = estaturaMinima;
     }
 
     public int getEdadMinima() {
@@ -127,21 +127,78 @@ public class Atraccion implements IGestionable, IValidable{
 
     @Override
     public void abrir(){
-
+        estadoAtraccion = EstadoAtraccion.ACTIVA;
     }
 
     @Override
     public void cerrar(){
-
+        estadoAtraccion = EstadoAtraccion.CERRADA;
     }
 
     @Override
     public void cambiarEstado(String estado){
 
+        if(estado.equalsIgnoreCase("ACTIVA")){
+            estadoAtraccion = EstadoAtraccion.ACTIVA;
+        }
+
+        else if(estado.equalsIgnoreCase("CERRADA")){
+            estadoAtraccion = EstadoAtraccion.CERRADA;
+        }
+
+        else if(estado.equalsIgnoreCase("MANTENIMIENTO")){
+            estadoAtraccion = EstadoAtraccion.MANTENIMIENTO;
+        }
     }
 
     @Override
     public boolean validarAcceso(Visitante visitante){
-        return  true;
+
+        if(estadoAtraccion != EstadoAtraccion.ACTIVA){
+            return false;
+        }
+
+        if(visitantesDentroAtraccion >= capacidadMaxima){
+            return false;
+        }
+
+        if(visitante.getEdad() < edadMinima){
+            return false;
+        }
+
+        if(visitante.getEstatura() < estaturaMinima){
+            return false;
+        }
+        return true;
     }
+
+    public boolean ingresarVisitante(Visitante visitante){
+
+        if(validarAcceso(visitante)){
+
+            visitantesDentroAtraccion++;
+            visitantesTotalesDeAtraccion++;
+            return true;
+        }
+        return false;
+    }
+
+    public void salirVisitante(Visitante visitante){
+
+        if(visitantesDentroAtraccion > 0){
+            visitantesDentroAtraccion--;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Atraccion{" +
+                "id=" + id +
+                "nombre='" + nombre + '\'' +
+                "estado=" + estadoAtraccion +
+                '}';
+    }
+
+
+
 }

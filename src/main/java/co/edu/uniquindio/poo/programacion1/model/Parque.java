@@ -27,6 +27,7 @@ public class Parque implements INotificable{
         this.zonas = new ArrayList<>();
         this.visitantes = new ArrayList<>();
         this.empleados = new ArrayList<>();
+        this.atracciones = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -96,5 +97,118 @@ public class Parque implements INotificable{
     @Override
     public void enviarNotificacion(String mensaje) {
 
+        System.out.println("PARQUE: " + mensaje);
+
     }
+
+    @Override
+    public String toString() {
+        return "Parque{" +
+                "nombre='" + nombre + '\'' +
+                "ubicacion='" + ubicacion + '\'' +
+                '}';
+    }
+
+    public void agregarEmpleado(Empleado empleado){
+       empleados.add(empleado);
+    }
+
+    public Empleado buscarEmpleado(int idEmpleado){
+
+        for (Empleado empleado : empleados) {
+            if (empleado.getIdEmpleado() == idEmpleado) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+
+    public boolean eliminarEmpleado(int idEmpleado){
+
+        Empleado empleadoEncontrado = buscarEmpleado(idEmpleado);
+
+        if (empleadoEncontrado != null) {
+            empleados.remove(empleadoEncontrado);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void agregarVisitante(Visitante visitante){
+        visitantes.add(visitante);
+    }
+
+    public Visitante buscarVisitante(String documento){
+        for (Visitante visitante : visitantes) {
+            if (visitante.getDocumento().equals(documento)) {
+                return visitante;
+            }
+        }
+        return null;
+    }
+
+    public boolean eliminarVisitante(String documento){
+
+        Visitante visitanteEncontrado = buscarVisitante(documento);
+        if (visitanteEncontrado != null) {
+            visitantes.remove(visitanteEncontrado);
+            return true;
+        }
+        return false;
+    }
+
+    public void agregarAtraccion(Atraccion atraccion){
+        atracciones.add(atraccion);
+    }
+
+    public Atraccion buscarAtraccion(String nombre){
+
+        for (Atraccion atraccion : atracciones) {
+            if (atraccion.getNombre().equals(nombre)) {
+                return atraccion;
+            }
+        }
+        return null;
+    }
+
+    public boolean eliminarAtraccion(String nombre){
+
+        Atraccion atraccion = buscarAtraccion(nombre);
+        if (atraccion != null) {
+            atracciones.remove(atraccion);
+            return true;
+        }
+        return false;
+    }
+
+    public void agregarZona(Zona zona){
+        zonas.add(zona);
+    }
+
+    public Zona buscarZona(int idZona){
+        for (Zona zona : zonas) {
+            if (zona.getIdZona() == idZona) {
+                return zona;
+            }
+        }
+        return null;
+    }
+
+    public boolean eliminarZona(int idZona){
+        Zona zonaEncontrado = buscarZona(idZona);
+        if (zonaEncontrado != null) {
+            zonas.remove(zonaEncontrado);
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
 }

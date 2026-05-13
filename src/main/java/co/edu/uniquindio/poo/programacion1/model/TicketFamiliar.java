@@ -7,9 +7,9 @@ public class TicketFamiliar extends Ticket{
     private int cantidadPersonas;
     private double descuento;
 
-    public TicketFamiliar(int idTicket, double precio, boolean activo, LocalDate fechaCompra, int cantidadPersonas, double descuento) {
+    public TicketFamiliar(int idTicket, double precio, boolean activo, int cantidadPersonas, double descuento) {
 
-        super(idTicket, precio, activo, fechaCompra);
+        super(idTicket, precio, activo);
 
         this.cantidadPersonas = cantidadPersonas;
         this.descuento = descuento;
@@ -29,6 +29,45 @@ public class TicketFamiliar extends Ticket{
     }
 
     public void setDescuento(double descuento) {
-        this.descuento = descuento;
+        if(descuento >= 0 && descuento <= 1){
+            this.descuento = descuento;
+        }
     }
+
+    @Override
+    public boolean validarAcceso(Visitante visitante) {
+        return activo && cantidadPersonas > 0;
+    }
+
+    public boolean usarEntrada(){
+
+        if(cantidadPersonas > 0){
+
+            cantidadPersonas--;
+
+            if(cantidadPersonas == 0){
+                activo = false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public double calcularPrecioConDescuento(){
+
+        return precio - (precio * descuento);
+    }
+
+    @Override
+    public String toString() {
+        return "TicketFamiliar{" +
+                "idTicket=" + idTicket +
+                "cantidadPersonas=" + cantidadPersonas +
+                "descuento=" + descuento +
+                "activo=" + activo +
+                '}';
+    }
+
 }

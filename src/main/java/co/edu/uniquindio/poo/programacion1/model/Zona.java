@@ -69,4 +69,54 @@ public class Zona {
     public void setAtracciones(ArrayList<Atraccion> atracciones) {
         this.atracciones = atracciones;
     }
+
+    public void agregarAtraccion(Atraccion atraccion){
+        atracciones.add(atraccion);
+    }
+
+    public Atraccion buscarAtraccion(int idAtraccion){
+
+        for(Atraccion atraccion : atracciones){
+
+            if(atraccion.getId() == idAtraccion){
+                return atraccion;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean eliminarAtraccion(int idAtraccion){
+
+        Atraccion atraccionEncontrada = buscarAtraccion(idAtraccion);
+
+        if(atraccionEncontrada != null){
+
+            atracciones.remove(atraccionEncontrada);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void activarZona(){
+        activa = true;
+    }
+
+    public void desactivarZona(){
+        activa = false;
+    }
+
+    public int contarAtracciones(){
+        return atracciones.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Zona{" +
+                "idZona=" + idZona +
+                "nombre='" + nombre + '\'' +
+                "activa=" + activa +
+                '}';
+    }
 }

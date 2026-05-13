@@ -59,4 +59,22 @@ public class HistorialVisitas {
     public void setAtraccion(Atraccion atraccion) {
         this.atraccion = atraccion;
     }
+
+    public void registrarVisita(){
+        cantidadVisitas++;
+    }
+
+    public void reiniciarHistorial(){
+        cantidadVisitas = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "HistorialVisitas{" +
+                "idHistorial=" + idHistorial +
+                "visitante=" + visitante.getNombre() +
+                "atraccion=" + atraccion.getNombre() +
+                "cantidadVisitas=" + cantidadVisitas +
+                '}';
+    }
 }

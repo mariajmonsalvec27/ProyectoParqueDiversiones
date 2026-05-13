@@ -38,4 +38,27 @@ public class Empleado extends Persona{
     public void setIdEmpleado(int idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + getNombre() + '\'' +
+                "idEmpleado=" + idEmpleado +
+                "salario=" + salario +
+                '}';
+    }
+
+    public void aumentarSalario(double aumento){
+
+        if(aumento > 0){
+            salario += aumento;
+        }
+    }
+
+    public void reducirSalario(double descuento){
+
+        if(descuento > 0 && descuento <= salario){
+            salario -= descuento;
+        }
+    }
 }
