@@ -1,16 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.poo.programacion1.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
+<VBox alignment="TOP_CENTER" spacing="15.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="co.edu.uniquindio.poo.programacion1.HelloController">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="TECH PARK UQ" textAlignment="CENTER">
+      <font>
+         <Font size="24.0" />
+      </font></Label>
+   <Label text="Nombre del visitante" />
+
+    <TextField fx:id="txtNombre" maxWidth="300.0" prefWidth="300.0" promptText="Nombre" />
+   <Label text="Documento" />
+
+    <TextField fx:id="txtDocumento" maxWidth="300.0" prefWidth="300.0" promptText="Documento" />
+   <Label text="Edad" />
+
+    <TextField fx:id="txtEdad" maxWidth="300.0" prefWidth="300.0" promptText="Edad" />
+   <Label text="Estatura" />
+
+    <TextField fx:id="txtEstatura" maxWidth="300.0" prefWidth="300.0" promptText="Estatura" />
+
+    <Button onAction="#registrarVisitante" prefWidth="150.0" text="Registrar visitante" />
+
+    <TableView fx:id="tablaVisitantes" prefHeight="250.0" prefWidth="500.0">
+
+
+        <columns>
+
+            <TableColumn fx:id="colNombre" prefWidth="100" text="Nombre" />
+            <TableColumn fx:id="colDocumento" prefWidth="100" text="Documento" />
+            <TableColumn fx:id="colEdad" prefWidth="70.0" text="Edad" />
+            <TableColumn fx:id="colEstatura" text="Estatura" />
+            <TableColumn fx:id="colTicket" prefWidth="120" text="Tiene Ticket" />
+            <TableColumn fx:id="colTipoTicket"
+                         prefWidth="120"
+                         text="Tipo Ticket" />
+        </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+
+    </TableView>
+
+    <TextField fx:id="txtBuscarDocumento" promptText="Documento visitante" />
+    <ComboBox fx:id="comboTipoTicket"
+              promptText="Seleccione ticket" />
+    <Button onAction="#comprarTicket" prefWidth="150.0" text="Comprar Ticket" />
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+
 </VBox>

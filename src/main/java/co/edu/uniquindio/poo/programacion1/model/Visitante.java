@@ -67,9 +67,16 @@ public class Visitante extends Persona{
         return false;
     }
 
-    public boolean tieneTicket(){
-
+    public boolean isTieneTicket() {
         return ticket != null;
+    }
+    public String getTipoTicket() {
+
+        if(ticket == null) {
+            return "Sin ticket";
+        }
+
+        return ticket.getClass().getSimpleName();
     }
 
     public boolean puedeUsarFastPass(){
